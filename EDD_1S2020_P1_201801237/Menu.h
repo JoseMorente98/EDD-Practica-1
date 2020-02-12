@@ -24,7 +24,7 @@ void Menu::mostrarMenu() {
 }
 
 void Menu::menuArchivo() {
-	cout << "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA\n";
-	cout << "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA\n";
-	cout << "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA\n";
+	cout << "CTRL + W (Buscar y Remplazar)\n";
+	cout << "CTRL + C (Reportes)\n";
+	cout << "CTRL + S (Guardar)\n";
 }

@@ -1,16 +1,43 @@
 // EDD_1S2020_P1_201801237.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
-
 #include <iostream>
-#include <Windows.h>
 #include <wchar.h>
 #include <locale.h>
 #include <string>
 #include <conio.h>
 #include "Menu.h"
 #include "Validacion.h"
-
+#include <windows.h>
+#include <conio.h>
+#include <ctype.h>
+#include <iostream>
+#include "ListaCaracter.h"
 using namespace std;
+bool estado = true;
+ListaCaracter lista;
+
+void MenuArchivo() {
+	char foo;
+	cout << ">> ";
+
+	while (estado) {
+
+		foo = _getch();
+		int ascii = foo;
+		if (ascii == 121) {
+			estado = false;
+			
+			system("cls");
+			lista.Visualizar();
+		}
+		else {
+			lista.Insertar(foo);
+			std::cout << foo << "(" << ascii << ")";
+		}
+		
+
+	}
+}
 
 int main()
 {
@@ -30,6 +57,7 @@ int main()
 			{
 			case 1:
 				system("cls");
+				MenuArchivo();
 				break;
 			case 2:
 				system("cls");
