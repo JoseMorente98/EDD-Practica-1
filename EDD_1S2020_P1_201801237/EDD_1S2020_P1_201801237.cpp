@@ -11,10 +11,10 @@
 #include <conio.h>
 #include <ctype.h>
 #include <iostream>
-#include "ListaCaracter.h"
+#include "ListCharacter.h"
 using namespace std;
 bool estado = true;
-ListaCaracter lista;
+ListCharacter lista;
 
 void MenuArchivo() {
 	char foo;
@@ -28,14 +28,12 @@ void MenuArchivo() {
 			estado = false;
 			
 			system("cls");
-			lista.Visualizar();
+			lista.Show();
 		}
 		else {
-			lista.Insertar(foo);
-			std::cout << foo << "(" << ascii << ")";
+			lista.Add(foo, 0, 0);
+			std::cout << foo;
 		}
-		
-
 	}
 }
 

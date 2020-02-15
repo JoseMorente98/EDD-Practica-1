@@ -147,14 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="EDD_1S2020_P1_201801237.cpp" />
-    <ClCompile Include="ListaCaracter.cpp" />
+    <ClCompile Include="ListCharacter.cpp" />
     <ClCompile Include="Validacion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Caracter.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="EDD_1S2020_P1_201801237.h" />
-    <ClInclude Include="ListaCaracter.h" />
+    <ClInclude Include="ListCharacter.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Validacion.h" />
   </ItemGroup>

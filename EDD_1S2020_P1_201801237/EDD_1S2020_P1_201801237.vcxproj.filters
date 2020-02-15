@@ -21,7 +21,10 @@
     <ClCompile Include="Validacion.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="ListaCaracter.cpp">
+    <ClCompile Include="Character.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="ListCharacter.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +41,10 @@
     <ClInclude Include="Caracter.h">
       <Filter>Archivos de origen</Filter>
     </ClInclude>
-    <ClInclude Include="ListaCaracter.h">
+    <ClInclude Include="Character.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ListCharacter.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
