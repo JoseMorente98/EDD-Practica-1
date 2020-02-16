@@ -1,6 +1,6 @@
-#include "Validacion.h"
+#include "Validator.h"
 
-bool Validacion::ValidarNumero(std::string cadena)
+bool Validator::IsDigit(std::string cadena)
 {
     for (size_t i = 0; i < cadena.size(); i++)
     {

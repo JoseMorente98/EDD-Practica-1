@@ -5,6 +5,7 @@
 */
 class StackUndo
 {
+public:
     StackUndo();
     LogChange* top = NULL;
     void Push(LogChange* p);

@@ -1,5 +1,7 @@
-﻿  Character.cpp
-  EDD_1S2020_P1_201801237.cpp
-  ListCharacter.cpp
+﻿  EDD_1S2020_P1_201801237.cpp
+  StackRedo.cpp
+  StackUndo.cpp
+  TextEditor.cpp
+  Validator.cpp
   Generando código...
   EDD_1S2020_P1_201801237.vcxproj -> C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\Debug\EDD_1S2020_P1_201801237.exe

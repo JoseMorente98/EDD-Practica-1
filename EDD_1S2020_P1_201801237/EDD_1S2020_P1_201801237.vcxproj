@@ -151,16 +151,22 @@
     <ClCompile Include="EDD_1S2020_P1_201801237.cpp" />
     <ClCompile Include="ListCharacter.cpp" />
     <ClCompile Include="LogChange.cpp" />
-    <ClCompile Include="Validacion.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="StackRedo.cpp" />
+    <ClCompile Include="StackUndo.cpp" />
+    <ClCompile Include="TextEditor.cpp" />
+    <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Caracter.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EDD_1S2020_P1_201801237.h" />
     <ClInclude Include="ListCharacter.h" />
     <ClInclude Include="LogChange.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Validacion.h" />
+    <ClInclude Include="StackRedo.h" />
+    <ClInclude Include="StackUndo.h" />
+    <ClInclude Include="TextEditor.h" />
+    <ClInclude Include="Validator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

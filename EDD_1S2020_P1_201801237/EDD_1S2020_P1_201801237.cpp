@@ -1,95 +1,13 @@
 // EDD_1S2020_P1_201801237.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
-#include <iostream>
-#include <wchar.h>
-#include <locale.h>
-#include <string>
-#include <conio.h>
-#include "Menu.h"
-#include "Validacion.h"
-#include <windows.h>
-#include <conio.h>
-#include <ctype.h>
-#include <iostream>
-#include "ListCharacter.h"
-using namespace std;
-bool estado = true;
-ListCharacter lista;
 
-void MenuArchivo() {
-	char foo;
-	cout << ">> ";
-
-	while (estado) {
-
-		foo = _getch();
-		int ascii = foo;
-		if (ascii == 121) {
-			estado = false;
-			
-			system("cls");
-			lista.Show();
-		}
-		else {
-			lista.Add(foo, 0, 0);
-			std::cout << foo;
-		}
-	}
-}
-
+#include "TextEditor.h"
 int main()
 {
-	string entrada;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
-	Menu menu;
-	menu.mostrarMenu();
-
-	bool exit = false;
-	do {
-		cout << ">> ";
-		std::cin >> entrada;
-		Validacion validacion;
-		if (validacion.ValidarNumero(entrada)) {
-			int entrada2 = stoi(entrada);
-			switch (entrada2)
-			{
-			case 1:
-				system("cls");
-				MenuArchivo();
-				break;
-			case 2:
-				system("cls");
-				break;
-			case 3:
-				system("cls");
-				break;
-			case 4:
-				system("cls");
-				break;
-			default:
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
-				cout << "Usted ha ingresado una opcion incorrecta.\n";
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
-				exit = true;
-				entrada;
-				break;
-			}
-		}
-		else {
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
-			cout << "Usted ha ingresado una opcion incorrecta.\n";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
-			exit = true;
-			entrada;
-		}
-	} while (exit);
-
-	/*for (int i = 0; i < 256; i++)
-	{
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), i);
-		std::cout << "UNIVERSIDAD DE SAN CARLOS DE GUATEMALA \n";
-	}*/
-    
+	TextEditor textEditor;
+	
+	textEditor.MainMenu();
+	return 0;
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar

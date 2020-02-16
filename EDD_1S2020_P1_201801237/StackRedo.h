@@ -5,6 +5,7 @@
 */
 class StackRedo
 {
+public:
     StackRedo();
     LogChange* top = NULL;
     void Push(LogChange* p);
