@@ -4,6 +4,9 @@ using namespace std;
 class LogChange
 {
 public:
+    /*
+       PROPIEDADES
+   */
     LogChange();
     LogChange(string search, string replace, bool state, string word, int x, int y);
     virtual ~LogChange();
