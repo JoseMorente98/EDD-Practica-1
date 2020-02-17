@@ -1,7 +1,6 @@
 ﻿  EDD_1S2020_P1_201801237.cpp
-  StackRedo.cpp
-  StackUndo.cpp
+  ListCharacter.cpp
+C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\ListCharacter.cpp(168,23): warning C4018: '<': no coinciden signed/unsigned
   TextEditor.cpp
-  Validator.cpp
   Generando código...
   EDD_1S2020_P1_201801237.vcxproj -> C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\Debug\EDD_1S2020_P1_201801237.exe

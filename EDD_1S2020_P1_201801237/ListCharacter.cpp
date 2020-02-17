@@ -1,5 +1,9 @@
 #include "ListCharacter.h"
 #include <iostream>
+#include <fstream>
+
+using namespace std;
+
 Character* firstReplace = NULL;
 Character* lastReplace = NULL;
 
@@ -127,4 +131,49 @@ void ListCharacter::Show()
 			aux = aux->getNext();
 		}
 	}
+}
+
+void ListCharacter::GenerateGraph(std::string fileName)
+{
+	string fileHead = "digraph G {\n"
+		"node[shape = box];\n";
+
+	string fileFooter = "}";
+
+	string body;
+	string bodyTwo;
+
+	std::ofstream ofs(fileName + ".dot", std::ofstream::out);
+
+	Character* aux = first;
+	string textFile = "";
+	int counter = 0;
+
+	while (aux != NULL)
+	{
+		if (aux->getCharacter() == ' ') {
+			body = body + "NodoCharacter" + to_string(counter) + " [label = " + '"' + " " + '"' + "];\n";
+		}
+		else if (aux->getCharacter() == '\n')
+		{
+			body = body + "NodoCharacter" + to_string(counter) + " [label = " + '"' + " " + '"' + "];\n";
+		}
+		else {
+			body = body + "NodoCharacter" + to_string(counter) + " [label = " + '"' + aux->getCharacter() + '"' + "];\n";
+		}
+		aux = aux->getNext();
+		counter++;
+	}
+
+	for (size_t i = 0; i < counter - 1; i++)
+	{
+		bodyTwo = bodyTwo + "NodoCharacter" + to_string(i) + "->NodoCharacter" + to_string(i + 1) + ";\nNodoCharacter" + to_string(i + 1) + "->NodoCharacter" + to_string(i) + ";\n";
+	}
+
+	textFile = fileHead + body + bodyTwo + fileFooter;
+	ofs << textFile;
+
+	ofs.close();
+	system("dot -Tjpg -o ListaDoble.png ListaDoble.dot");
+	system("ListaDoble.png");
 }

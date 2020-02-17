@@ -1,6 +1,7 @@
 #pragma once
 #include "Character.h"
 #include <string>
+#include <string>
 
 class ListCharacter
 {
@@ -16,5 +17,6 @@ public:
 	void Clean();
 	void Order();
 	void Show();
+	void GenerateGraph(std::string nombre);
 };
 
