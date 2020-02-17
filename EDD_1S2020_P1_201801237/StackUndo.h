@@ -13,6 +13,7 @@ public:
     LogChange* Pop();
     void Show();
     void Clear();
+	void GenerateGraph(string nombre);
     virtual ~StackUndo();
 };
 
