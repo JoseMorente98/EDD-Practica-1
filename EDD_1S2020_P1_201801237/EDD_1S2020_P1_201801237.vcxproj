@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EDD_1S2020_P1_201801237.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="ListCharacter.cpp" />
     <ClCompile Include="LogChange.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Character.h" />
     <ClInclude Include="EDD_1S2020_P1_201801237.h" />
+    <ClInclude Include="File.h" />
     <ClInclude Include="ListCharacter.h" />
     <ClInclude Include="LogChange.h" />
     <ClInclude Include="Menu.h" />
