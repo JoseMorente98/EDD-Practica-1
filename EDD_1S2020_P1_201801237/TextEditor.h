@@ -17,7 +17,11 @@ public:
 public:
 	TextEditor();
 	virtual ~TextEditor();
+	int PositionX();
+	int PositionY();
+	void MoveXY(int x, int y);
 	void MainMenu();
 	void FileMenu();
+	void PrintAndClean();
 };
 

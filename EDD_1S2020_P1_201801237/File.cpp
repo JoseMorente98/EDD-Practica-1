@@ -17,7 +17,7 @@ File::~File()
     GETTER'S
  */
 File* File::getLink() const { return link; }
-int File::getIndex() const { return i; }
+int File::getIndex() const { return index; }
 string File::getName() const { return name; }
 string File::getRoute() const { return route; }
 

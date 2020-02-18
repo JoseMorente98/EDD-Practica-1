@@ -151,6 +151,7 @@
     <ClCompile Include="EDD_1S2020_P1_201801237.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="ListCharacter.cpp" />
+    <ClCompile Include="ListFile.cpp" />
     <ClCompile Include="LogChange.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="StackRedo.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="EDD_1S2020_P1_201801237.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="ListCharacter.h" />
+    <ClInclude Include="ListFile.h" />
     <ClInclude Include="LogChange.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="StackRedo.h" />

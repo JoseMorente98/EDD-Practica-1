@@ -42,4 +42,3 @@ public:
     void setPositionY(int a);
     void setNext(LogChange* a);
 };
-

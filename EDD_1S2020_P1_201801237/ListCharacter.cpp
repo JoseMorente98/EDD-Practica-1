@@ -42,6 +42,7 @@ void ListCharacter::Add(char c, int x, int y)
 			last = aux;
 		}
 	}
+	Order();
 }
 
 void ListCharacter::AddReplace(char c, int x, int y)
@@ -83,7 +84,36 @@ bool ListCharacter::IsBetween(int x, int y)
 
 void ListCharacter::Delete(int x, int y)
 {
-	
+	Character* aux = new Character();
+	aux = first;
+	Character* previous = new Character();
+	previous = NULL;
+	bool find = false;
+	if (!IsEmpty()) {
+
+		while (aux != NULL && find != true) {
+
+			if (aux->getPositionX() == x && aux->getPositionY()== y) {
+
+				if (aux == first) {
+					first = first->getNext();
+					first->setPrevious(NULL);
+				}
+				else if (aux == last) {
+					previous->setNext(NULL);
+					last = previous;
+				}
+				else {
+					previous->setNext(aux->getNext());
+					aux->getNext()->setPrevious(previous);
+				}
+				find = true;
+			}
+			previous = aux;
+			aux = aux->getNext();
+		}
+	}
+	Order();
 }
 
 bool ListCharacter::Search(std::string search)
@@ -127,7 +157,13 @@ void ListCharacter::Show()
 		aux = first;
 		while (aux != NULL)
 		{
-			std::cout << aux->getCharacter();
+			//std::cout << aux->getCharacter() << "(" << aux->getPositionX()  << "," << aux->getPositionY() << ")";
+			if (aux->getCharacter() == '\n') {
+				std::cout << "\n";
+			}
+			else {
+				std::cout << aux->getCharacter();
+			}			
 			aux = aux->getNext();
 		}
 	}
