@@ -1,3 +1,4 @@
-﻿  ListCharacter.cpp
-C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\ListCharacter.cpp(204,23): warning C4018: '<': no coinciden signed/unsigned
+﻿  TextEditor.cpp
+C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\TextEditor.cpp(32,16): warning C4838: la conversión de 'int' en 'SHORT' requiere una conversión de restricción
+C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\TextEditor.cpp(32,18): warning C4838: la conversión de 'int' en 'SHORT' requiere una conversión de restricción
   EDD_1S2020_P1_201801237.vcxproj -> C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\Debug\EDD_1S2020_P1_201801237.exe

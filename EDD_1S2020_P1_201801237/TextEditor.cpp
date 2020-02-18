@@ -155,34 +155,7 @@ void TextEditor::FileMenu()
 		*/
 		else if (ascii == 23)
 		{
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-			cout << "\n__________________________________________________\n";
-			cout << "\nBUSCAR Y REEMPLAZAR: ";
-			cout << "\n__________________________________________________\n";
-			string search = "";
-			cin >> search;
-			size_t found = search.find(";");
-			vector<string> wordSearch;
-			wordSearch.push_back(search.substr(0, found)); 
-			wordSearch.push_back(search.substr(found + 1, search.size()));
-
-			if (listCharacter.Search(search)) {
-				PrintAndClean();
-				cout << "\n__________________________________________________\n";
-				//cout << listCharacter.getContador() << " Se afectaron 10(s)\n";
-				cout << "\n__________________________________________________\n";
-				system("pause");
-				PrintAndClean();
-				/*
-					ALMACENAR PALABRA BUSCADA EN PILA
-				*/
-				stackUndo.Push(new LogChange(wordSearch[0], wordSearch[1], false, "", 0, 0));
-			}
-			else {
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
-				cout << "Palabra no encontrada D:";
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
-			}
+			this->Search();
 		}
 		/*
 			TECLA DE ESCAPE CTRL + X
@@ -201,9 +174,9 @@ void TextEditor::FileMenu()
 				c->setState(true);
 				stackUndo.Push(c);
 				string search = c->getSearch() + ";" + c->getReplace();
-				/*if(lista.search(search)) {
-					Limpiar();
-				}*/
+				if (listCharacter.Search(search)) {
+					PrintAndClean();
+				}
 			}
 		}
 		/*
@@ -215,15 +188,46 @@ void TextEditor::FileMenu()
 				c->setState(true);
 				stackRedo.Push(c);
 				string search = c->getReplace() + ";" + c->getSearch();
-				/*if (lista.search(search)) {
-					Limpiar();
-				}*/
+				if (listCharacter.Search(search)) {
+					PrintAndClean();
+				}
 			}
 		}
 		else {
 			listCharacter.Add(character, PositionX(), PositionY());
 			PrintAndClean();
 		}
+	}
+}
+
+void TextEditor::Search() {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	cout << "\n__________________________________________________\n";
+	cout << "\nBUSCAR Y REEMPLAZAR: ";
+	cout << "\n__________________________________________________\n";
+	string search = "";
+	cin >> search;
+	size_t found = search.find(";");
+	vector<string> wordSearch;
+	wordSearch.push_back(search.substr(0, found));
+	wordSearch.push_back(search.substr(found + 1, search.size()));
+
+	if (listCharacter.Search(search)) {
+		PrintAndClean();
+		cout << "\n__________________________________________________\n";
+		//cout << listCharacter.getContador() << " Se afectaron 10(s)\n";
+		cout << "\n__________________________________________________\n";
+		system("pause");
+		PrintAndClean();
+		/*
+			ALMACENAR PALABRA BUSCADA EN PILA
+		*/
+		stackUndo.Push(new LogChange(wordSearch[0], wordSearch[1], false, "", 0, 0));
+	}
+	else {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+		cout << "Palabra no encontrada D:";
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 	}
 }
 
@@ -241,21 +245,47 @@ void TextEditor::Reports() {
 			switch (inputText2)
 			{
 			case 1:
-				listCharacter.GenerateGraph("ListaDoble");
+				if (!listCharacter.IsEmpty()) {
+					listCharacter.GenerateGraph("ListaDoble");
+				}
+				else {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+					cout << " La lista se encuentra vacia D:\n";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+				}
+				exit = true;
 				break;
 			case 2:
-				stackUndo.GenerateGraph("StackUndo");
+				if (!stackUndo.IsEmpty()) {
+					stackUndo.GenerateGraph("StackUndo");
+				}
+				else {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+					cout << " La pila se encuentra vacia D:\n";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+				}
+				exit = true;
 				break;
 			case 3:
-				stackRedo.GenerateGraph("StackRedo");
+				if (!stackRedo.IsEmpty()) {
+					stackRedo.GenerateGraph("StackRedo");
+				}
+				else {
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+					cout << " La pila se encuentra vacia D:\n";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+				}
+				exit = true;
 				break;
 			case 4:
+				this->PrintAndClean();
 				exit = false;
 				break;
 			default:
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 				cout << "Usted ha ingresado una opción incorrecta.\n";
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+				exit = true;
 				inputText;
 				break;
 			}
@@ -264,6 +294,7 @@ void TextEditor::Reports() {
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "Solamente puede ingresar digitos.\n";
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+			exit = true;
 			inputText;
 		}
 	} while (exit);
