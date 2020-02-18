@@ -82,7 +82,7 @@ void StackUndo::GenerateGraph(string nombre) {
 			"Estado:  Revertido\n"
 			"Palabra: " + aux->getWord() + "\n"
 			"Posicion: (" + to_string(aux->getPositionX()) + "," + to_string(aux->getPositionY()) + ")\n"
-			+ '"' + "]\n";
+			+ '"' + " style=dashed, fillcolor=red]\n";
 		aux = aux->getNext();
 		rankLogChange = rankLogChange + "NodeLogChange" + to_string(counter) + ";";
 		counter++;

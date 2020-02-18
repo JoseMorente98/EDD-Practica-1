@@ -188,14 +188,14 @@ void ListCharacter::GenerateGraph(std::string fileName)
 	while (aux != NULL)
 	{
 		if (aux->getCharacter() == ' ') {
-			body = body + "NodeCharacter" + to_string(counter) + " [label = " + '"' + " " + '"' + "];\n";
+			body = body + "Node" + to_string(counter) + " [label = " + '"' + " " + '"' + " shape=circle, style=dashed, fillcolor=darkgreen];\n";
 		}
 		else if (aux->getCharacter() == '\n')
 		{
-			body = body + "NodeCharacter" + to_string(counter) + " [label = " + '"' + " " + '"' + "];\n";
+			body = body + "Node" + to_string(counter) + " [label = " + '"' + " " + '"' + " shape=circle, style=dashed, fillcolor=darkgreen];\n";
 		}
 		else {
-			body = body + "NodeCharacter" + to_string(counter) + " [label = " + '"' + aux->getCharacter() + '"' + "];\n";
+			body = body + "Node" + to_string(counter) + " [label = " + '"' + aux->getCharacter() + '"' + " shape=circle, style=dashed, fillcolor=darkgreen];\n";
 		}
 		aux = aux->getNext();
 		counter++;
@@ -203,7 +203,7 @@ void ListCharacter::GenerateGraph(std::string fileName)
 
 	for (size_t i = 0; i < counter - 1; i++)
 	{
-		bodyTwo = bodyTwo + "NodeCharacter" + to_string(i) + "->NodeCharacter" + to_string(i + 1) + ";\nNodoCharacter" + to_string(i + 1) + "->NodeCharacter" + to_string(i) + ";\n";
+		bodyTwo = bodyTwo + "Node" + to_string(i) + "->Node" + to_string(i + 1) + ";\nNode" + to_string(i + 1) + "->Node" + to_string(i) + ";\n";
 	}
 
 	textFile = fileHead + body + bodyTwo + fileFooter;

@@ -1,8 +1,10 @@
 #include "TextEditor.h"
+#include "Validator.h"
+
 #include <windows.h>
 #include <iostream>
-#include "Validator.h"
 #include <conio.h>
+#include <vector>
 
 TextEditor::TextEditor()
 {
@@ -35,13 +37,13 @@ void TextEditor::PrintAndClean()
 {
 	system("cls");
 	this->menu.MenuFile();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 	this->listCharacter.Show();
 }
 
 void TextEditor::MainMenu()
 {
 	string inputText;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 
 	this->menu.MainMenu();
 
@@ -70,7 +72,7 @@ void TextEditor::MainMenu()
 				break;
 			default:
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
-				cout << "Usted ha ingresado una opcion incorrecta.\n";
+				cout << "Usted ha ingresado una optionText incorrecta.\n";
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 				exit = true;
 				inputText;
@@ -92,8 +94,8 @@ void TextEditor::FileMenu()
 	bool state = true;
 	char character;
 	int entry = 4;
+	
 	this->menu.MenuFile();
-
 	//cout << ">> ";
 
 	while (state) {
@@ -122,7 +124,7 @@ void TextEditor::FileMenu()
 		*/
 		if (ascii == 3)
 		{
-			
+			this->Reports();
 		}
 		/*
 			BACKSPACE
@@ -149,6 +151,40 @@ void TextEditor::FileMenu()
 			
 		}
 		/*
+			TECLA DE ESCAPE CTRL + W
+		*/
+		else if (ascii == 23)
+		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+			cout << "\n__________________________________________________\n";
+			cout << "\nBUSCAR Y REEMPLAZAR: ";
+			cout << "\n__________________________________________________\n";
+			string search = "";
+			cin >> search;
+			size_t found = search.find(";");
+			vector<string> wordSearch;
+			wordSearch.push_back(search.substr(0, found)); 
+			wordSearch.push_back(search.substr(found + 1, search.size()));
+
+			if (listCharacter.Search(search)) {
+				PrintAndClean();
+				cout << "\n__________________________________________________\n";
+				//cout << listCharacter.getContador() << " Se afectaron 10(s)\n";
+				cout << "\n__________________________________________________\n";
+				system("pause");
+				PrintAndClean();
+				/*
+					ALMACENAR PALABRA BUSCADA EN PILA
+				*/
+				stackUndo.Push(new LogChange(wordSearch[0], wordSearch[1], false, "", 0, 0));
+			}
+			else {
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+				cout << "Palabra no encontrada D:";
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+			}
+		}
+		/*
 			TECLA DE ESCAPE CTRL + X
 		*/
 		else if (ascii == 24)
@@ -165,7 +201,7 @@ void TextEditor::FileMenu()
 				c->setState(true);
 				stackUndo.Push(c);
 				string search = c->getSearch() + ";" + c->getReplace();
-				/*if(lista.Buscar(buscar)) {
+				/*if(lista.search(search)) {
 					Limpiar();
 				}*/
 			}
@@ -179,7 +215,7 @@ void TextEditor::FileMenu()
 				c->setState(true);
 				stackRedo.Push(c);
 				string search = c->getReplace() + ";" + c->getSearch();
-				/*if (lista.Buscar(buscar)) {
+				/*if (lista.search(search)) {
 					Limpiar();
 				}*/
 			}
@@ -191,3 +227,44 @@ void TextEditor::FileMenu()
 	}
 }
 
+void TextEditor::Reports() {
+	this->menu.MenuReports();
+	string inputText = "";
+	bool exit = false;
+	do {
+		std::cout << " >> ";
+		std::cin >> inputText;
+
+		Validator validator;
+		if (validator.IsDigit(inputText)) {
+			int inputText2 = stoi(inputText);
+			switch (inputText2)
+			{
+			case 1:
+				listCharacter.GenerateGraph("ListaDoble");
+				break;
+			case 2:
+				stackUndo.GenerateGraph("StackUndo");
+				break;
+			case 3:
+				stackRedo.GenerateGraph("StackRedo");
+				break;
+			case 4:
+				exit = false;
+				break;
+			default:
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+				cout << "Usted ha ingresado una opción incorrecta.\n";
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+				inputText;
+				break;
+			}
+		}
+		else {
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+			cout << "Solamente puede ingresar digitos.\n";
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+			inputText;
+		}
+	} while (exit);
+}

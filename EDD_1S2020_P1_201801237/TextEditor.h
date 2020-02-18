@@ -22,6 +22,7 @@ public:
 	void MoveXY(int x, int y);
 	void MainMenu();
 	void FileMenu();
+	void Reports();
 	void PrintAndClean();
 };
 

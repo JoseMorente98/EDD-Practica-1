@@ -1,13 +1,22 @@
 // EDD_1S2020_P1_201801237.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
+#include <windows.h>
 
 #include "TextEditor.h"
+#include <iostream>
 int main()
 {
 	TextEditor textEditor;
 	
 	textEditor.MainMenu();
 	return 0;
+
+	/*for (size_t i = 0; i < 256; i++)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), i);
+
+		std::cout << "Hola Mund " << i << "\n"; 
+	}*/
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
