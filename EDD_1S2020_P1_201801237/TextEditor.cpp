@@ -118,6 +118,8 @@ void TextEditor::MainMenu()
 
 void TextEditor::FileMenu()
 {
+	stackRedo.Clear();
+	stackUndo.Clear();
 	listCharacter.Clean();
 	listCharacter.Add(' ', 0, 4);
 	this->PrintAndClean();
@@ -231,9 +233,7 @@ void TextEditor::FileMenu()
 			this->SaveFile();
 		}
 		else {
-			int x = PositionX();
-			int y = PositionY();
-			listCharacter.Add(character, x, y);
+			listCharacter.Add(character, PositionX(), PositionY());
 			PrintAndClean();
 		}
 		character = ' ';
@@ -243,6 +243,8 @@ void TextEditor::FileMenu()
 
 void TextEditor::FileRead()
 {
+	stackRedo.Clear();
+	stackUndo.Clear();
 	this->PrintAndClean();
 	bool state = true;
 	char character;
@@ -377,8 +379,10 @@ void TextEditor::Search() {
 
 	if (listCharacter.Search(search)) {
 		PrintAndClean();
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 		cout << "\n__________________________________________________\n";
-		//cout << listCharacter.getContador() << " Se afectaron 10(s)\n";
+		cout << listCharacter.counter << " reemplazos.";
+		listCharacter.counter = 0;
 		cout << "\n__________________________________________________\n";
 		system("pause");
 		PrintAndClean();
@@ -617,7 +621,7 @@ void TextEditor::SaveFile() {
 	this->menu.MenuSave();
 	while(state) {
 		string search = "";
-		cout << " >>";
+		cout << ">>";
 		cin >> search;
 		if (search.length() > 0)
 		{

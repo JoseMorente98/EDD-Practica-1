@@ -1,5 +1,5 @@
 ﻿  TextEditor.cpp
 C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\TextEditor.cpp(34,16): warning C4838: la conversión de 'int' en 'SHORT' requiere una conversión de restricción
 C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\TextEditor.cpp(34,18): warning C4838: la conversión de 'int' en 'SHORT' requiere una conversión de restricción
-C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\TextEditor.cpp(625,25): warning C4129: 'E': secuencia de escape de carácter no reconocida
+C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\EDD_1S2020_P1_201801237\TextEditor.cpp(629,25): warning C4129: 'E': secuencia de escape de carácter no reconocida
   EDD_1S2020_P1_201801237.vcxproj -> C:\Users\josem\Documents\Universidad de San Carlos de Guatemala\USAC Semestre V\USAC Estructura de Datos\EDD_1S2020_P1_201801237\Debug\EDD_1S2020_P1_201801237.exe

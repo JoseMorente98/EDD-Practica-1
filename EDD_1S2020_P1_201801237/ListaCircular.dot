@@ -2,12 +2,16 @@ digraph G {node[shape = circle, style=dashed, fillcolor=red];
 Node1[label = "Nombre: Test1.txt 
 Ruta: 
 	-C:\EDD\Test1.txt"]
-Node2[label = "Nombre: Hola.txt 
+Node2[label = "Nombre: EDDTest 
 Ruta: 
-	-C:\EDD\Hola.txt"]
-Node3[label = "Nombre: Test1.txt 
+	-C:EDD"]
+Node3[label = "Nombre: Test2.txt 
 Ruta: 
-	-C:\EDD\Test1.txt"]
+	-C:\EDD\Test2.txt"]
+Node4[label = "Nombre: text2 
+Ruta: 
+	-C:EDD"]
 Node1->Node2
 Node2->Node3
-Node3->Node1{rank=same; Node1;Node2;Node3;}}
+Node3->Node4
+Node4->Node1{rank=same; Node1;Node2;Node3;Node4;}}

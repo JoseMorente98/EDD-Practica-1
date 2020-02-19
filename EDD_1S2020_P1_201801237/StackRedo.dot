@@ -1,10 +1,10 @@
 digraph G {node[shape = box];
 NodeLogChange0 [label =  "Palabra Buscada:  prro 
 Reemplazada por: rafael
-Estado:  No revertido
+Estado: Revertido
 Palabra: 
 Posicion: (0,0)
-" style=dashed, fillcolor=red]
+" style=dashed, fillcolor=navy]
 
 {rank=same; NodeLogChange0;}
 }

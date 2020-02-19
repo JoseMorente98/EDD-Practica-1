@@ -77,12 +77,22 @@ void StackRedo::GenerateGraph(string nombre) {
 
 	while (aux != NULL)
 	{
-		body = body + "NodeLogChange" + to_string(counter) + " [label =  " + '"' + "Palabra Buscada:  " + aux->getSearch() + " \n" +
-			"Reemplazada por: " + aux->getReplace() + "\n"
-			"Estado: No revertido\n"
-			"Palabra: " + aux->getWord() + "\n"
-			"Posicion: (" + to_string(aux->getPositionX()) + "," + to_string(aux->getPositionY()) + ")\n"
-			+ '"' + " style=dashed, fillcolor=navy]\n";
+		if (aux->getState()) {
+			body = body + "NodeLogChange" + to_string(counter) + " [label =  " + '"' + "Palabra Buscada:  " + aux->getSearch() + " \n" +
+				"Reemplazada por: " + aux->getReplace() + "\n"
+				"Estado: Revertido\n"
+				"Palabra: " + aux->getWord() + "\n"
+				"Posicion: (" + to_string(aux->getPositionX()) + "," + to_string(aux->getPositionY()) + ")\n"
+				+ '"' + " style=dashed, fillcolor=navy]\n";
+		}
+		else {
+			body = body + "NodeLogChange" + to_string(counter) + " [label =  " + '"' + "Palabra Buscada:  " + aux->getSearch() + " \n" +
+				"Reemplazada por: " + aux->getReplace() + "\n"
+				"Estado: No revertido\n"
+				"Palabra: " + aux->getWord() + "\n"
+				"Posicion: (" + to_string(aux->getPositionX()) + "," + to_string(aux->getPositionY()) + ")\n"
+				+ '"' + " style=dashed, fillcolor=navy]\n";
+		}
 		aux = aux->getNext();
 		rankLogChange = rankLogChange + "NodeLogChange" + to_string(counter) + ";";
 		counter++;

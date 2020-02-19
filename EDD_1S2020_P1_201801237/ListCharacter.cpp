@@ -1,6 +1,7 @@
 #include "ListCharacter.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -12,28 +13,28 @@ bool ListCharacter::IsEmpty()
 	return first == NULL;
 }
 
-void ListCharacter::Add(char c, int x, int y)
-{
-	
-	Character* aux  = new Character(c, x, y);
+void ListCharacter::Add(char c, int x, int y) {
+	Character* aux =  new Character(c, x, y);
 
-	if (IsEmpty()) {
+	if (first == NULL) {
 		first = aux;
+		first->setNext(NULL);
+		first->setPrevious(NULL);
 		last = first;
 	}
 	else {
 		if (IsBetween(x, y)) {
-			Character* temp = new Character();
-			temp = first;
-			while (temp != NULL) {
-				if (temp->getPositionX() == x && temp->getPositionY() == y) {
-					temp->getPrevious()->setPrevious(aux);
-					aux->setPrevious(temp->getPrevious());
-					temp->setPrevious(aux);
-					aux->setNext(temp);
+			Character* aux2 = new Character();
+			aux2 = first;
+			while (aux2 != NULL) {
+				if (aux2->getPositionX() == x && aux2->getPositionY() == y) {
+					aux2->getPrevious()->setNext(aux);
+					aux->setPrevious(aux2->getPrevious());
+					aux2->setPrevious(aux);
+					aux->setNext(aux2);
 					break;
 				}
-				temp = temp->getNext();
+				aux2 = aux2->getNext();
 			}
 		}
 		else {
@@ -42,39 +43,21 @@ void ListCharacter::Add(char c, int x, int y)
 			aux->setPrevious(last);
 			last = aux;
 		}
-	}
-	Order();
-}
-
-void ListCharacter::AddReplace(char c, int x, int y)
-{
-	Character* aux;
-	aux = new Character(c, x, y);
-	if (firstReplace == NULL) {
-		firstReplace = aux;
-		firstReplace->setNext(NULL);
-		firstReplace->setPrevious(NULL);
-		lastReplace = firstReplace;
-	}
-	else {
-		lastReplace->setNext(aux);
-		aux->setNext(NULL);
-		aux->setNext(lastReplace);
-		lastReplace = aux;
+		this->Order();
 	}
 }
 
 bool ListCharacter::IsBetween(int x, int y)
 {
-	Character* temp = new Character();
+	Character* aux2 = new Character();
 	int counter = 0;
-	temp = first;
-	while (temp != NULL) {
-		if (temp->getPositionX() == x && temp->getPositionY() == y) {
+	aux2 = first;
+	while (aux2 != NULL) {
+		if (aux2->getPositionX() == x && aux2->getPositionY() == y) {
 			counter++;
 			break;
 		}
-		temp = temp->getNext();
+		aux2 = aux2->getNext();
 	}
 	if (counter != 0)
 	{
@@ -115,10 +98,126 @@ void ListCharacter::Delete(int x, int y)
 	Order();
 }
 
-bool ListCharacter::Search(std::string search)
-{
+bool ListCharacter::Search(string search) {
+	vector<string> similarText;
+	string textSearch = search;
+	string textSearch2 = ";";
+	int quantity = 0;
 
+	size_t findWord = textSearch.find(textSearch2);
+
+	if (findWord != string::npos) {
+
+		similarText.push_back(search.substr(0, findWord) + " ");
+
+		similarText.push_back(search.substr(findWord + 1, search.size()) + " ");
+
+		Character* aux = first;
+		for (size_t i = 0; i < similarText[0].size(); i++)
+		{
+			while (aux != NULL)
+			{
+				if (aux->getCharacter() == similarText[0][i])
+				{
+					quantity++;
+					aux = aux->getNext();
+					break;
+				}
+				else
+				{
+					aux = aux->getNext();
+				}
+			}
+		}
+		if (quantity == similarText[0].size())
+		{
+			Replace(this->DeleteSpace(similarText[0]), this->DeleteSpace(similarText[1]));
+			counter++;
+			this->Search(this->DeleteSpace(search));
+			return true;
+		}
+	}
 	return false;
+}
+
+void ListCharacter::Replace(string search, string replace) {
+	Character* aux = first;
+	Character* nodeFirst;
+	Character* nodeLast;
+	Character* nodeAux;
+	string linkTogether;
+
+	do
+	{
+		if (aux->getCharacter() == search[0] && (aux->getPrevious() == NULL || aux->getPrevious()->getCharacter() == ' ' || aux->getPrevious()->getCharacter() == '.' || aux->getPrevious()->getCharacter() == ',' || aux->getPrevious()->getCharacter() == '\n'))
+		{
+			while (aux->getCharacter() != ' ')
+			{
+				linkTogether += aux->getCharacter();
+				if (aux->getCharacter() == NULL || aux->getNext()->getCharacter() == ' ')
+				{
+					break;
+				}
+				aux = aux->getNext();
+			}
+
+			if (search == linkTogether)
+			{
+				nodeLast = aux;
+				while (aux->getCharacter() != search[0])
+				{
+					aux = aux->getPrevious();
+				}
+
+				nodeFirst = aux;
+				if (nodeFirst != first)
+				{
+					nodeFirst = aux->getPrevious();
+				}
+
+				for (int i = 0; i < replace.size(); i++)
+				{
+					nodeAux = new Character(replace[i], 0, 0);
+
+					nodeFirst->setNext(nodeAux);
+					nodeAux->setPrevious(nodeFirst);
+
+					if (i == replace.size() - 1)
+					{
+						if (nodeLast != last)
+						{
+							nodeAux->setNext(nodeLast->getNext());
+							nodeLast->getNext()->setPrevious(nodeAux);
+						}
+						else
+						{
+							last = nodeAux;
+						}
+					}
+
+					nodeFirst = nodeFirst->getNext();
+
+					if (nodeFirst->getPrevious() != NULL && nodeFirst->getPrevious() == first && nodeFirst->getPrevious()->getCharacter() == search[0])
+					{
+						nodeFirst->getPrevious()->setNext(NULL);
+						nodeFirst->setPrevious(NULL);
+						first = nodeFirst;
+					}
+				}
+				aux = nodeFirst;
+			}
+		}
+
+		aux = aux->getNext();
+	} while (aux != NULL);
+	this->Order();
+}
+
+inline string ListCharacter::DeleteSpace(string& text)
+{
+	text.erase(0, text.find_first_not_of(' '));       //prefixing spaces
+	text.erase(text.find_last_not_of(' ') + 1);         //surfixing spaces
+	return text;
 }
 
 void ListCharacter::Clean()
@@ -219,7 +318,8 @@ void ListCharacter::SaveFile(string nombre) {
 	if (aux != NULL)
 	{
 		ofstream fout;
-		fout.open("C:/EDD/" + nombre + ".txt");
+		string routeFile = "C:" + to_string('\\') + "EDD" + to_string('\\') + nombre + ".txt";
+		fout.open(routeFile);
 		while (aux != NULL)
 		{
 			fout << aux->getCharacter();
