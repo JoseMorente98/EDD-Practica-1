@@ -14,6 +14,7 @@ bool ListCharacter::IsEmpty()
 
 void ListCharacter::Add(char c, int x, int y)
 {
+	
 	Character* aux  = new Character(c, x, y);
 
 	if (IsEmpty()) {
@@ -90,14 +91,12 @@ void ListCharacter::Delete(int x, int y)
 	previous = NULL;
 	bool find = false;
 	if (!IsEmpty()) {
-
+		
 		while (aux != NULL && find != true) {
 
 			if (aux->getPositionX() == x && aux->getPositionY()== y) {
 
 				if (aux == first) {
-					first = first->getNext();
-					first->setPrevious(NULL);
 				}
 				else if (aux == last) {
 					previous->setNext(NULL);
@@ -159,7 +158,7 @@ void ListCharacter::Show()
 		{
 			//std::cout << aux->getCharacter() << "(" << aux->getPositionX()  << "," << aux->getPositionY() << ")";
 			if (aux->getCharacter() == '\n') {
-				std::cout << "\n";
+				std::cout << "\n ";
 			}
 			else {
 				std::cout << aux->getCharacter();
@@ -171,9 +170,9 @@ void ListCharacter::Show()
 
 void ListCharacter::GenerateGraph(std::string fileName)
 {
+	Character* aux = first->getNext();
 	string fileHead = "digraph G {\n"
 		"node[shape = box];\n";
-
 	string fileFooter = "}";
 
 	string body;
@@ -181,7 +180,6 @@ void ListCharacter::GenerateGraph(std::string fileName)
 
 	std::ofstream ofs(fileName + ".dot", std::ofstream::out);
 
-	Character* aux = first;
 	string textFile = "";
 	int counter = 0;
 
@@ -212,4 +210,26 @@ void ListCharacter::GenerateGraph(std::string fileName)
 	ofs.close();
 	system("dot -Tjpg -o ListaDoble.png ListaDoble.dot");
 	system("ListaDoble.png");
+}
+
+void ListCharacter::SaveFile(string nombre) {
+	Character* aux = first->getNext();
+	string texto = "";
+
+	if (aux != NULL)
+	{
+		ofstream fout;
+		fout.open("C:/EDD/" + nombre + ".txt");
+		while (aux != NULL)
+		{
+			fout << aux->getCharacter();
+			aux = aux->getNext();
+		}
+		fout.close();
+	}
+}
+
+bool ListCharacter::FirstEmpty()
+{
+	return first->getNext() == NULL;
 }

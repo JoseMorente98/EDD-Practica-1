@@ -6,6 +6,7 @@
 #include <iostream>
 int main()
 {
+
 	TextEditor textEditor;
 	
 	textEditor.MainMenu();

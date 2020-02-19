@@ -1,0 +1,13 @@
+digraph G {node[shape = circle, style=dashed, fillcolor=red];
+Node1[label = "Nombre: Test1.txt 
+Ruta: 
+	-C:\EDD\Test1.txt"]
+Node2[label = "Nombre: Hola.txt 
+Ruta: 
+	-C:\EDD\Hola.txt"]
+Node3[label = "Nombre: Test1.txt 
+Ruta: 
+	-C:\EDD\Test1.txt"]
+Node1->Node2
+Node2->Node3
+Node3->Node1{rank=same; Node1;Node2;Node3;}}

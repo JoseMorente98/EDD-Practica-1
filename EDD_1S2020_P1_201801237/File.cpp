@@ -2,12 +2,12 @@
 File::File()
 {
 }
-File::File(int i, string name, string route)
+File::File(int i, string n, string r)
 {
     this->index = i;
-    this->name = name;
-    this->route = route;
-    this->link = NULL;
+    this->name = n;
+    this->route = r;
+    this->link = this;
 }
 File::~File()
 {

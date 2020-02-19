@@ -6,12 +6,13 @@ private:
 	File* first;
 	File* last;
 public:
+	ListFile();
 	void Add(string name, string route);
 	void Show();
 	//string buscarArchivo(int dato);
 	void Clean();
 	bool IsEmpty();
-	string Search(int id);
+	File* Search(int index);
 	void GenerateGraph(std::string name);
 };
 

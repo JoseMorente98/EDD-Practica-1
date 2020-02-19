@@ -44,3 +44,32 @@ void Menu::MenuReports()
 	cout << " 4. Salir\n";
 	cout << " __________________________________________________\n";
 }
+
+void Menu::LoadFile()
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+	cout << "__________________________________________________\n";
+	cout << "CARGA DE ARCHIVOS\n";
+	cout << "__________________________________________________\n";
+	cout << "Ingrese la ruta:\n";
+	cout << "Ejemplo: C:/EDD/Hola Mundo.txt\n";
+	cout << "__________________________________________________\n";
+}
+
+void Menu::MenuOpenRecent()
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+	cout << "__________________________________________________\n";
+	cout << "ARCHIVOS RECIENTES\n";
+	cout << "__________________________________________________\n";
+	cout << "Z: Generar reporte de archivos.\n";
+}
+
+void Menu::MenuSave()
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
+	cout << "\n __________________________________________________\n";
+	cout << " GUARDAR ARCHIVO\n";
+	cout << " __________________________________________________\n";
+	cout << " Escribir nombre de archivo: \n";
+}

@@ -18,5 +18,7 @@ public:
 	void Order();
 	void Show();
 	void GenerateGraph(string fileName);
+	void SaveFile(string nombre);
+	bool FirstEmpty();
 };
 
